@@ -1,9 +1,6 @@
 <template>
-  <tr>
-    <td>
-      {{ user.userId }}
-    </td>
-  </tr>
+  <!-- <div @click="$router.push(`/user/${user.userId}`)">{{ user.userId }}</div> -->
+  asdf
 </template>
 <script>
 export default {

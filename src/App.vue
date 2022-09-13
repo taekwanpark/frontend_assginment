@@ -5,6 +5,7 @@
     <!-- unique user list -->
     <User v-for="user in getUniqueUser" :key="user.id" :user="user" />
   </div>
+  <router-view></router-view>
 </template>
 
 <script>
