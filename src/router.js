@@ -1,17 +1,27 @@
 import { createWebHistory, createRouter } from 'vue-router';
-// import UserVue from './components/User.vue';
-import UserDetailVue from './components/UserDetail.vue';
+import UserListVue from './components/UserList.vue';
+import PostListVue from './components/PostList.vue';
+import PostDetailVue from './components/PostDetail.vue';
 import NotFoundVue from './components/NotFound.vue';
 
 const routes = [
   {
     path: '/',
-    components: UserDetailVue,
+    component: UserListVue,
   },
   {
     path: '/user/:userId',
-    components: UserDetailVue,
+    name: 'user',
+    component: PostListVue,
+    props: true,
   },
+  {
+    path: '/user/:userId/post/:id',
+    name: 'post',
+    component: PostDetailVue,
+    props: true,
+  },
+
   {
     path: '/:pathMatch(.*)',
     component: NotFoundVue,

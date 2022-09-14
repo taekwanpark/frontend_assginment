@@ -1,36 +1,32 @@
 <template>
-  <h3>Frontend - Assignment #1</h3>
-  <div v-if="loading === true">Loading...</div>
-  <div v-if="loading === false">
-    <!-- unique user list -->
-    <User v-for="user in getUniqueUser" :key="user.id" :user="user" />
+  <div>
+    <h1>Frontend - Assignment #1</h1>
+    <div v-if="loading === true">Loading...</div>
+    <div v-if="loading === false">
+      <!-- unique user list -->
+      <router-view></router-view>
+    </div>
   </div>
-  <router-view></router-view>
 </template>
 
 <script>
 import { mapState } from 'vuex';
-import User from './components/User.vue';
 
 export default {
   name: 'App',
   data() {
-    return {};
+    return {
+      // userList: [],
+    };
   },
-  mounted() {
+  created() {
     this.$store.dispatch('getData');
   },
   computed: {
-    ...mapState(['data', 'loading']),
-    getUniqueUser() {
-      const array = this.data.filter(
-        (arr, index, callback) =>
-          index === callback.findIndex(t => t.userId === arr.userId)
-      );
-      return array;
-    },
+    ...mapState(['loading']),
   },
-  components: { User },
+
+  components: {},
 };
 </script>
 
