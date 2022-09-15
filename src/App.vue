@@ -2,7 +2,7 @@
   <div class="w-full h-full">
     <div class="flex flex-col items-center">
       <!-- project title -->
-      <span class="font-bold text-3xl p-10">Frontend - Assignment #1</span>
+      <span class="font-bold text-3xl p-10">Frontend - Assignment</span>
       <!-- loading indicator -->
       <div class="" v-if="loading === true">
         <button
@@ -30,7 +30,7 @@
       </div>
     </div>
 
-    <div v-if="loading === false" class="w-full h-full text-center">
+    <div v-if="loading === false" class="w-full h-full">
       <!-- unique user list -->
       <div class="w-full flex items-center flex-col">
         <div class="flex gap-x-5 h-7">
@@ -64,7 +64,9 @@ export default {
     return {};
   },
   created() {
+    this.$store.dispatch('getUser');
     this.$store.dispatch('getData');
+    this.$store.dispatch('getComment');
   },
   computed: {
     ...mapState(['loading']),

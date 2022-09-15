@@ -1,19 +1,31 @@
 <template>
   <div class="text-xl font-semibold mb-10 mt-20">User List</div>
-  <div class="flex flex-col gap-y-5 w-1/2 items-center">
+  <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
     <div
-      class="border w-10 h-10 rounded-full text-center leading-10 hover:border-slate-600 cursor-pointer hover:text-slate-500"
-      v-for="user in getUniqueUser"
-      :key="user?.id"
+      v-for="user in users"
+      :key="user.id"
       @click="
         $router.push({
-          // path: `/user/${user?.userId}`,
           name: 'postList',
-          params: { userId: user.userId },
+          params: { userId: user.id },
         })
       "
+      class="relative cursor-pointer flex items-start space-x-3 rounded-lg border border-gray-300 bg-white px-6 py-5 shadow-sm focus-within:ring-2 focus-within:ring-indigo-500 focus-within:ring-offset-2 hover:border-gray-400"
     >
-      {{ user?.userId }}
+      <div class="flex-shrink-0 pr-2">
+        <img class="h-12 w-12 rounded-full bg-slate-200" alt="" />
+      </div>
+      <div class="min-w-0 flex-1">
+        <a href="#" class="focus:outline-none">
+          <span class="absolute inset-0" aria-hidden="true" />
+          <p class="text-sm font-medium text-gray-900">{{ user.name }}</p>
+          <p class="truncate text-xs text-gray-500">{{ user.username }}</p>
+          <p class="truncate text-sm text-gray-900">{{ user.company.name }}</p>
+          <p class="truncate text-xs text-gray-500">
+            {{ user.email }} / {{ user.phone }}
+          </p>
+        </a>
+      </div>
     </div>
   </div>
 </template>
@@ -23,7 +35,7 @@ import { mapState } from 'vuex';
 export default {
   name: 'user',
   computed: {
-    ...mapState(['data', 'loading']),
+    ...mapState(['users', 'data', 'loading']),
     getUniqueUser() {
       const array = this.data.filter(
         (arr, index, callback) =>
