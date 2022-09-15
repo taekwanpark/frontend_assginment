@@ -7,17 +7,18 @@ import NotFoundVue from './components/NotFound.vue';
 const routes = [
   {
     path: '/',
+    name: 'userList',
     component: UserListVue,
   },
   {
     path: '/user/:userId',
-    name: 'user',
+    name: 'postList',
     component: PostListVue,
     props: true,
   },
   {
     path: '/user/:userId/post/:id',
-    name: 'post',
+    name: 'postDetail',
     component: PostDetailVue,
     props: true,
   },

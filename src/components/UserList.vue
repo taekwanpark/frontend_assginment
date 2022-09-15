@@ -1,21 +1,19 @@
 <template>
-  <div class="user-list">
-    <h3>User List</h3>
-    <div class="user-wrapper">
-      <div
-        class="user"
-        v-for="user in getUniqueUser"
-        :key="user?.id"
-        @click="
-          $router.push({
-            // path: `/user/${user?.userId}`,
-            name: 'user',
-            params: { userId: user.userId },
-          })
-        "
-      >
-        {{ user?.userId }}
-      </div>
+  <div class="text-xl font-semibold mb-10 mt-20">User List</div>
+  <div class="flex flex-col gap-y-5 w-1/2 items-center">
+    <div
+      class="border w-10 h-10 rounded-full text-center leading-10 hover:border-slate-600 cursor-pointer hover:text-slate-500"
+      v-for="user in getUniqueUser"
+      :key="user?.id"
+      @click="
+        $router.push({
+          // path: `/user/${user?.userId}`,
+          name: 'postList',
+          params: { userId: user.userId },
+        })
+      "
+    >
+      {{ user?.userId }}
     </div>
   </div>
 </template>
@@ -36,21 +34,4 @@ export default {
   },
 };
 </script>
-<style>
-.user-wrapper {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-.user {
-  width: 20px;
-  height: 20px;
-  display: inline;
-  margin: 10px 10px;
-  padding: 5px;
-  border-radius: 20px;
-  cursor: pointer;
-  background-color: antiquewhite;
-}
-</style>
+<style></style>
