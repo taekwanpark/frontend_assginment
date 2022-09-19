@@ -1,9 +1,19 @@
 import { createStore } from 'vuex';
 import axios from 'axios';
 import createPersistedState from 'vuex-persistedstate';
+import VuexORM from '@vuex-orm/core';
+import User from "@/Models/User";
+import Post from "@/Models/Post";
+import Comment from '@/Models/Comment'
+
+const database = new VuexORM.Database();
+database.register(User)
+database.register(Post)
+database.register(Comment)
 
 const store = createStore({
-  plugins: [createPersistedState()],
+  plugins: [createPersistedState(), VuexORM.install(database)],
+
   state() {
     return {
       data: [],

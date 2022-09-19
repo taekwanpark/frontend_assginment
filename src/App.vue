@@ -49,7 +49,7 @@
             <span class="relative text-white">User</span>
           </span>
         </div>
-        <router-view></router-view>
+        <router-view :key="$route.path"></router-view>
       </div>
     </div>
   </div>
